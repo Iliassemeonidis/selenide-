@@ -1,4 +1,4 @@
-package ru.idtm.documino;
+package ru.testing;
 import com.codeborne.selenide.junit.TextReport;
 import org.junit.Rule;
 import org.junit.Test;
