@@ -32,7 +32,7 @@ public class VolsTest {
 
         $(byText("Создать документ")).click();
         $(byText("ИСХОДЯЩИЕ ДОКУМЕНТЫ")).click();
-        $(byText("Создат")).click();
+        $(byText("Создать")).click();
         $(byText("Реквизиты")).click();
 
         // заполняем обязательные поля
