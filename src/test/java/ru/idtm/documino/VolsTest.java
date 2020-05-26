@@ -1,6 +1,7 @@
 package ru.idtm.documino;
 
 import com.codeborne.selenide.junit.TextReport;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
@@ -13,15 +14,29 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class VolsTest {
+
+
     @Rule
     public TestRule report = new TextReport().onFailedTest(true).onSucceededTest(true);
+
+    @Test
+    public void userConect() throws Exception {
+
+        String url = "http://185.187.112.55/";
+        browser = "firefox";
+        open(url);
+        $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Boss11").pressEnter();
+        $(byXpath("/html/body/div/div[3]/form/div[2]/input")).setValue("1");
+        $(byText("Войти")).click();
+
+    }
     @Test
     public void userConectVolsProd() throws Exception {
 
         /* есть крутой критейрий поиска это byText , нет привезки к html разметкаим ,
          но проблема в том что не все элементы он находит потакому притирию поиска и прихолится использовать byXpath
         что не очень продуктивно, на случай если кто то что то поменяет на сраничку то тест может упасть */
-
+//
         String url = "http://185.187.112.55/";
         browser = "firefox";
         open(url);
@@ -55,8 +70,11 @@ public class VolsTest {
         // сохраняем и отпраявлем на соглосования
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div[1]/div[2]/ul/li/div")).click();
 
-
-
-
     }
+
+
+
+
+
+
 }
