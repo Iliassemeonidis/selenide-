@@ -8,9 +8,10 @@ public class Buttons {
     private final static String SAVE = "Сохранить";
     private final static String DELETE = "Удалить";
     private final static String CONTENT = "Контент";
-    private final static String CONSIDERATION = "На рассмотрение";
+    private final static String CONSIDERATION = "НА РАССМОТРЕНИЕ";
     private final static String REGISTER = "Зарегистрировать";
     private final static String REVIEW = "На Рассмотрение";
+    private final static String HISTORY = "История";
 
     public static void requisites(){
         $(byText(REQUISITES)).click();
@@ -21,16 +22,16 @@ public class Buttons {
     public static void delete(){
         $(byText(DELETE)).click();
     }
-    public static void content(){
-        $(byText(CONTENT)).click();
-    }
+    public static void content(){ $(byText(CONTENT)).click(); }
     public static void consideration(){
         $(byText(CONSIDERATION)).click();
-    } public static void register(){
-        $(byText(REGISTER)).click();
-    } public static void review(){
-        $(byText(REVIEW)).click();
     }
+    public static void register(){
+        $(byText(REGISTER)).click();
+    }
+    public static void review(){ $(byText(REVIEW)).click(); }
+    public static void history(){ $(byText(HISTORY)).click(); }
+
 
 
 }
