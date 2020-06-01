@@ -47,14 +47,14 @@ public class Buttons {
     public static void revert(){ $(byText(REVERT)).click(); }
     public static void bringBack(){ $(byText(BRING_BACK)).click(); }
     public static void allTasks(){ $(byText(ALL_TASKS)).click(); sleep(1000);}
-    public static void complete(){ $(byText(COMPLETE)).click(); sleep(1000);}
+    public static void complete(){ $(byText(COMPLETE)).click(); sleep(10000);}
     public static void reject(){ $(byText(REJECT)).click(); sleep(1000);}
-    public static void forAllWhoAreNot(){ $(byText(FOR_ALL_WHO_ARE_NOT)).click(); sleep(1000);}
-    public static void approve(){ $(byText(APPROVE)).click(); sleep(1000);}
+    public static void forAllWhoAreNot(){ $(byText(FOR_ALL_WHO_ARE_NOT)).click(); sleep(10000);}
+    public static void approve(){ $(byText(APPROVE)).click(); sleep(10000);}
     public static void toSing(){ $(byText(TO_SING)).click(); sleep(1000);}
-    public static void sing(){ $(byText(SING)).click(); sleep(1000);}
+    public static void sing(){ $(byText(SING)).click(); sleep(10000);}
     public static void createResolution(){ $(byText(CREATE_RESOLUTION)).click(); sleep(1000);}
-    public static void execute(){ $(byText(EXECUTE)).click(); sleep(1000);}
+    public static void execute(){ $(byText(EXECUTE)).click(); sleep(10000);}
     public static void printCart(){ $(byText(PRINT_CART)).click(); sleep(1000);}
 
 

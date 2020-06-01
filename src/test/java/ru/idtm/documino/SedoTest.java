@@ -6,7 +6,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Random;
 import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Condition.text;
@@ -25,6 +24,7 @@ public class SedoTest {
     private final String MEMORANDUM_TEST = "C3(тест)";
     private final String BOSS = "Босс11";
     private final String DOC = "test.txt";
+    private final String DOC1 = "ответ.txt";
     private final String REGULATORY_DOCUMENTS = "РАСПОРЯДИТЕЛЬНЫЕ ДОКУМЕНТЫ";
     private final String ORDER_DOCUMENTS = "Приказ (пустой шаблон)";
     private String val = "";
@@ -36,12 +36,13 @@ public class SedoTest {
     @Test
     public void tess_90() {
         OpenBrowser.openUtl();
-        //sleep(10000);
+        sleep(10000);
         $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Boss11").pressEnter();
         $(byXpath("/html/body/div/div[3]/form/div[2]/input")).setValue("1");
         $(byText("Войти")).click();
     }
-//
+
+    //
 //    @Test
 //    public void test_91() {
 //        CreateDocument.create(INPUTDOCUMENT);
@@ -348,125 +349,148 @@ public class SedoTest {
 /////////////////////////////// приказ
     @Test
     public void test_125() {
+        CreateDocument.createInDoc(REGULATORY_DOCUMENTS, "div.menu-list:nth-child(2) > div:nth-child(1)");
+    }
+    @Test
+    public void test_126() {
         // создаем приказ
-        CreateDocument.createInDoc(REGULATORY_DOCUMENTS, ORDER_DOCUMENTS);
         Buttons.requisites();
     }
 
+
+    // заполняем обязательные поле описание
     @Test
-    public void test_126() {
+    public void test_127() {
         $(byXpath("//*[@id=\"dss_description\"]")).setValue("Auto-test777");
     }
 
+    // поле подписант
     @Test
-    public void test_127() {
+    public void test_128() {
 // заполняем поле подписант
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[9]/div/div/div/div[1]/div/div/div/div/div[1]/button")).click();
+        $("div.input-select-container:nth-child(3) > div:nth-child(1) > div:nth-child(2) > button:nth-child(2)").click();
+        sleep(1000);
         $(byXpath("//*[@id=\"branchId\"]")).setValue("Тестовый Филиал");
         $(byText("Тестовый Филиал")).click();
+        $(byXpath("//*[@id=\"query\"]")).setValue("Босс21");
         sleep(1000);
-        $(byXpath("//*[@id=\"query\"]")).setValue("Клерк2").pressEnter();
-        sleep(1000);
-        $(byText("Делопроизводитель2")).click();
+        $(byText("Начальник 1")).click();
         $$(PATH).findBy(text(BUTTON)).click();
     }
 
+    // переходим в контент
     @Test
-    public void test_128() {
+    public void test_129() {
         Buttons.content();
     }
 
+    //
+//    // загружаем док
     @Test
-    public void test_129() {
+    public void test_130() {
         Content.content(DOC);
     }
 
+    //
+//    // сохранякм и ждем
     @Test
-    public void test_130() {
+    public void test_131() {
         Buttons.save();
         sleep(1000);
     }
 
-    @Test
-    public void test_131() {
-        $(byText("Согласование и подписание")).click();
-    }
-
+    //
+//    // нажимаем на вкладку соласование и подписание
     @Test
     public void test_132() {
+        $(byText("Согласование и подписание")).click();
+    }
+//
+
+
+    // заполняем этапы  проверка оформления
+    @Test
+    public void test_133() {
         // добавляем
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[5]/div[3]/div[2]/div/div[1]/div[3]/button[1]")).click();
-// добавляем проверяющего
+
         $(".layout-icon").click();
         $(byXpath("//*[@id=\"branchId\"]")).setValue("Тестовый Филиал");
         $(byText("Тестовый Филиал")).click();
         sleep(1000);
-        $(byXpath("//*[@id=\"query\"]")).setValue("Клерк2").pressEnter();
+        $(byXpath("//*[@id=\"query\"]")).setValue("Босс51").pressEnter();
         sleep(10000);
-        $(byText("Департамент 2")).click();
+        $(byText("Департамент 5")).click();
         $$(PATH).findBy(text(BUTTON)).click();
         $(byText("Добавить")).click();
     }
 
+    //
     @Test
-    public void test_133() {
-        // добавляем этап
+    public void test_134() {
+        // добавдяем согласующего
         //$("button.m-l-12").click();
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[5]/div[4]/div[2]/div/div[1]/div[3]/button[1]")).click();
     }
 
-    @Test
-    public void test_134() {
-        // добавляем этап
-        //$("button.m-l-12").click();
-        $(".layout-icon").click();
-//        $(byXpath("//*[@id=\"selectedUsers\"]")).setValue(BOSS);
-//        sleep(10000);
-//        $(byText("Босс11 , Главный специалист, АО \"ПЭС\"")).click();
-        $(byText("Главный специалист")).click();
-        $$(PATH).findBy(text(BUTTON)).click();
-        $(byText("Добавить")).click();
-    }
-
+    //    // заполняем согласующего
     @Test
     public void test_135() {
-        Buttons.agreement();
+        $(".layout-icon").click();
+        $(byXpath("//*[@id=\"branchId\"]")).click();
+        $(byText("Тестовый Филиал")).click();
         sleep(1000);
+        $(byXpath("//*[@id=\"query\"]")).setValue("Босс31").pressEnter();
+        sleep(10000);
+        $(byText("Департамент 3")).click();
+        $$(PATH).findBy(text(BUTTON)).click();
+        $(byText("Добавить")).click();
+
     }
 
+    //    // нажимаем кнопку на согласование
     @Test
     public void test_136() {
-        // выходим из босса
-  UserChange.comInBoss1();
-
-        sleep(1000);
+        Buttons.agreement();
+        sleep(10000);
     }
 
+    //// выходим из босса11
     @Test
     public void test_137() {
-        // заходим под клерком2
-        $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Clerk2").pressEnter();
-        $(byXpath("/html/body/div/div[3]/form/div[2]/input")).setValue("1");
-        $(byText("Войти")).click();
+        // выходим из босса11
+        UserChange.exit();
     }
 
     @Test
     public void test_138() {
-        //находим под клерком наш док под клерком
+        // заходим под boss51 провверяющий оформление
+        UserChange.comInBoss51();
+    }
+
+    @Test
+    public void test_139() {
+        //находим под boss51 наш док
         $(byText("Все задания")).click();
         sleep(1000);
     }
 
     @Test
-    public void test_139() {
-        //находим под клерком наш док под клерком
-        $$(byText("Auto-test777"))
+    public void test_140() {
+        //находим под boss51
+        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div/button")).click();
+        $(byXpath("//*[@id=\"desc\"]")).setValue("Auto-test777");
+        sleep(10000);
+        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div/div[4]/div[2]/button")).click();
+        sleep(1000);
+        $$(byText("Распорядительные документы"))
                 .first()
                 .click();
     }
 
     @Test
-    public void test_140() {
+    public void test_141() {
         // скачиваем контент
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div/div/button[1]")).click();
         sleep(1000);
@@ -474,372 +498,504 @@ public class SedoTest {
     }
 
     @Test
-    public void test_141() {
-
+    public void test_142() {
+// отказ
         Buttons.revert();
     }
 
     @Test
-    public void test_142() {
+    public void test_143() {
+        // заполняем описание
         $(byXpath("//*[@id=\"reportText\"]")).setValue("Авто-отклон");
 
     }
 
-    @Test
-    public void test_143() {
-        Content.content(DOC);
+    @Test // загружаем контент
+    public void test_144() {
+        Content.content(DOC1);
         sleep(1000);
     }
 
     @Test
-    public void test_144() {
+    public void test_145() {
+        // нажимаем кнопку вернуть
         $("div.el-dialog__footer:nth-child(3) > span:nth-child(1) > button:nth-child(1)").click();
         sleep(10000);
     }
 
     @Test
-    public void test_145() {
-        // выходим из клерка
-        $("button.el-tooltip:nth-child(5)").click();
-
-        $(byText("Выход")).click();
-        sleep(1000);
-
-    }
-
-    @Test
     public void test_146() {
-        $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Boss11").pressEnter();
-        $(byXpath("/html/body/div/div[3]/form/div[2]/input")).setValue("1");
-        $(byText("Войти")).click();
-
+        // выходим из boss51
+        UserChange.exit();
     }
-
     @Test
     public void test_147() {
-        //находим под клерком наш док под клерком
-        $(byText("Все задания")).click();
-        sleep(10000);
+        // заходим под boss11
+        UserChange.comInBoss11();
     }
+
 
     @Test
     public void test_148() {
-        // находим нужный док
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
+        //находим под boss11 наш док
+         Buttons.allTasks();
+        sleep(10000);
     }
 
     @Test
     public void test_149() {
-        // возвращаем все назад
-        Buttons.bringBack();
-        sleep(10000);
+        // находим нужный док
+        WorkWithDocuments.tryToFind();
     }
 
     @Test
     public void test_150() {
-        UserChange.comInClerk2();
+        // возвращаем все назад опять на утрвеждение проверки оформления
+        Buttons.bringBack();
+        sleep(10000);
     }
 
-    @Test
+        @Test
     public void test_151() {
-        Buttons.allTasks();
+        UserChange.exit();
     }
 
     @Test
     public void test_152() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
+        UserChange.comInBoss51();
     }
 
     @Test
     public void test_153() {
-        Buttons.complete();
+        Buttons.allTasks();
     }
 
     @Test
     public void test_154() {
-        UserChange.comInBoss1();
+        // находим наш док
+      WorkWithDocuments.tryToFind();
     }
 
     @Test
     public void test_155() {
-        Buttons.allTasks();
+        // подверждаем что все все ок
+        Buttons.complete();
     }
-
+ ////выходим из boss51
     @Test
     public void test_156() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
+        UserChange.exit();
     }
 
+    // заходим к босс31 на этап согласования
     @Test
     public void test_157() {
-
-        Buttons.reject();
+        UserChange.comInBoss31();
     }
-
+//
     @Test
     public void test_158() {
-
-        $(byXpath("//*[@id=\"reportText\"]")).setValue("Отклоняем для автотеста");
+        Buttons.allTasks();
     }
 
     @Test
     public void test_159() {
-        Content.content(DOC);
-        sleep(10000);
+        WorkWithDocuments.tryToFind();
     }
 
     @Test
     public void test_160() {
-        $(byXpath("/html/body/div[2]/div/div[3]/span/button[1]")).click();
-    }
-
-    @Test
-    public void test_161() {
-        Buttons.allTasks();
-
-    }
-
-    @Test
-    public void test_162() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
-    }
-
-    @Test
-    public void test_163() {
-        Buttons.forAllWhoAreNot();
-    }
-
-    @Test
-    public void test_164() {
-        Buttons.allTasks();
-    }
-
-    @Test
-    public void test_165() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
-    }
-
-    @Test
-    public void test_166() {
-        Buttons.approve();
-    }
-
-    @Test
-    public void test_167() {
-        UserChange.comInClerk2();
-    }
-
-    @Test
-    public void test_168() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
-    }
-
-    @Test
-    public void test_169() {
+// отклоняем наш док
         Buttons.reject();
     }
 
     @Test
+    public void test_161() {
+        // описание
+        $(byXpath("//*[@id=\"reportText\"]")).setValue("Отклоняем для автотеста");
+    }
+
+    @Test
+    public void test_162() {
+        // загружаем док
+        Content.content(DOC1);
+        sleep(10000);
+    }
+
+    @Test
+    public void test_163() {
+        // нажимаем отклонить
+        $(byXpath("/html/body/div[2]/div/div[3]/span/button[1]")).click();
+    }
+
+    @Test
+    public void test_164() {
+        // выходим из согласующего босс31
+        UserChange.exit();
+    }
+
+    @Test
+    public void test_165() {
+        // заходим под босс11
+        UserChange.comInBoss11();
+    }
+
+    @Test
+    public void test_166() {
+        // все задачи
+        Buttons.allTasks();
+    }
+
+    @Test
+    public void test_167() {
+        // находим наш док
+       WorkWithDocuments.tryToFind();
+    }
+
+    @Test
+    public void test_168() {
+        // Всем, кто не согласовал на текущем этапе
+        Buttons.forAllWhoAreNot();
+    }
+    @Test
+    public void test_169() {
+        //выходим из босс11
+        UserChange.exit();
+    }
+    @Test
     public void test_170() {
-        $(byXpath("//*[@id=\"reportText\"]")).setValue("авто-отклонение тест");
+        //заходим к согласующему 31
+        UserChange.comInBoss31();
     }
 
     @Test
     public void test_171() {
+        Buttons.allTasks();
+    }
+
+    @Test
+    public void test_172() {
+    WorkWithDocuments.tryToFind();
+    }
+
+    @Test
+    public void test_173() {
+        // согласовываем
+        Buttons.approve();
+    }
+
+    @Test
+    public void test_174() {
+        // выходим из согласующего
+        UserChange.exit();
+    }
+    @Test // идем к подписанту
+    public void test_175() {
+        // подписант босс21
+        UserChange.comInBoss21();
+    }
+
+    @Test
+    public void test_176() {
+        Buttons.allTasks();
+    }
+    @Test
+    public void test_177() {
+        WorkWithDocuments.tryToFind();
+    }
+
+    @Test
+    public void test_178() {
+        //отклоняем с подписания
+        Buttons.reject();
+    }
+
+    @Test
+    public void test_179() {
+        $(byXpath("//*[@id=\"reportText\"]")).setValue("авто-отклонение тест");
+    }
+
+    @Test
+    public void test_180() {
         Content.content(DOC);
         sleep(10000);
     }
 
     @Test
-    public void test_172() {
-        Buttons.reject();
+    public void test_181() {
+        $("div.el-dialog__footer:nth-child(3) > span:nth-child(1) > button:nth-child(1)").click();
+        sleep(1000);
     }
 
     @Test
-    public void test_173() {
-        UserChange.comInBoss1();
+    public void test_182() {
+        // выходим из подписанта босс21
+        UserChange.exit();
+    }
+    @Test
+    public void test_183() {
+        // заходим к боссу11 автору
+        UserChange.comInBoss11();
     }
 
     @Test
-    public void test_174() {
+    public void test_184() {
+        // все задачи
         Buttons.allTasks();
     }
 
     @Test
-    public void test_175() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
+    public void test_185() {
+        // находим наш док
+       WorkWithDocuments.tryToFind();
     }
 
     @Test
-    public void test_176() {
+    public void test_186() {
+        // отправляесм еще раз на подписание
         Buttons.toSing();
     }
-
     @Test
-    public void test_177() {
-        UserChange.comInClerk2();
+    public void test_187() {
+        //выходим из автора босса 11
+        UserChange.exit();
+    }
+    @Test
+    public void test_188() {
+        //заходим к подписанту
+        UserChange.comInBoss21();
     }
 
+
     @Test
-    public void test_178() {
+    public void test_189() {
+        // все задачи
         Buttons.allTasks();
     }
 
     @Test
-    public void test_179() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
+    public void test_190() {
+        // находим наш док
+       WorkWithDocuments.tryToFind();
     }
 
     @Test
-    public void test_180() {
+    public void test_191() {
+        // подписываем
         Buttons.sing();
     }
+/*
+  ///  / временный блок 191 потому что будем создавать резолючию сразу после подписания
+//     @Test
+//    public void test_191() {
+//   // поиск нашего дока
+//    $("button.layout-action-button:nth-child(1)").click();
+//    $(byXpath("//*[@id=\"changing\"]")).setValue("166").pressEnter();
+//    $(byText("Искать")).click();
+//    sleep(1000);
+//    $$(byText("Auto-test777"))
+//            .first()
+//            .click();
+//}*/
 
     @Test
-    public void test_181() {
+    public void test_192() {
+        // заходим в реквизиты чтоб скопировать значение рег номера
         Buttons.requisites();
         sleep(1000);
         val = $(byXpath("//*[@id=\"dss_reg_number\"]")).getValue();
     }
 
     @Test
-    public void test_182() {
+    public void test_193() {
+        // создаем резолюцию
         Buttons.createResolution();
     }
-
     @Test
-    public void test_183() {
+    public void test_194() {
+        // исполнитель
+        $(byXpath("//*[@id=\"performers\"]")).setValue("Босс51");
+        sleep(1000);
+        $(byText("Босс51 , Начальник 1, Департамент 5")).click();
+
+    }
+    @Test
+    public void test_195() {
+        // заполняем поле дата исполнения
         $(byXpath("//*[@id=\"Дата исполнения\"]")).click();
         $(byText("Без срока")).click();
     }
 
     @Test
-    public void test_184() {
-        $(byXpath("//*[@id=\"dssDescription\"]")).setValue("Трям");
-    }
-
-    @Test
-    public void test_185() {
-        $(byXpath("//*[@id=\"dssDescription\"]")).setValue("Трям");
-    }
-
-    @Test
-    public void test_186() {
-        $(byXpath("//*[@id=\"performers\"]")).setValue("Клерк2");
-        sleep(1000);
-        $(byText("Клерк2  , Делопроизводитель2, Департамент 2")).click();
-    }
-
-    @Test
-    public void test_187() {
-        $(byXpath("/html/body/div[4]/div/div[3]/span/button[2]")).click();
-    }
-
-    @Test
-    public void test_188() {
-        Buttons.allTasks();
-    }
-
-    @Test
-    public void test_189() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
-    }
-
-    @Test
-    public void test_190() {
-        Buttons.history();
-    }
-
-    @Test
-    public void test_191() {
-        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div/div[2]")).shouldHave(text("Исполнение"));
-    }
-
-    @Test
-    public void test_192() {
-        Buttons.execute();
-    }
-
-    @Test
-    public void test_193() {
-        $(byXpath("//*[@id=\"reportText\"]")).setValue("The end");
-    }
-
-    @Test
-    public void test_194() {
-        Content.content(DOC);
-    }
-
-    @Test
-    public void test_195() {
-        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[3]/button[3]")).click();
-    }
-
-    @Test
     public void test_196() {
-        $(byXpath("/html/body/div[1]/div[3]/nav/div[4]/button[1]")).click();
-
+        // описание заполняем
+        $(byXpath("//*[@id=\"dssDescription\"]")).setValue("Трям");
     }
+
 
     @Test
     public void test_197() {
-        $(byText("По резолюциям")).click();
+        $("div.el-dialog__footer:nth-child(3) > span:nth-child(1) > button:nth-child(2)").click();
+        sleep(10000);
     }
-
-    @Test
+     @Test
     public void test_198() {
-        $(byText("По документам")).click();
+       // выходим от автора резолюции
+         UserChange.exit();
     }
 
     @Test
     public void test_199() {
-        $(byXpath("//*[@id=\"changing\"]")).setValue(val);
+       // заходим к тому кому адресованна резолюция
+         UserChange.comInBoss51();
     }
 
     @Test
     public void test_200() {
-        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div[2]/button[1]")).click();
+        // все задания
+        Buttons.allTasks();
     }
 
     @Test
     public void test_201() {
-        $$(byText("Auto-test777"))
-                .first()
-                .click();
+        // находим наш док
+       WorkWithDocuments.tryToFind();
     }
 
     @Test
     public void test_202() {
-        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div/div/button[1]")).click();
+        // переходим во вкладку история
+        Buttons.history();
     }
 
     @Test
     public void test_203() {
-        Buttons.printCart();
+        // проверяем что что ест текст исполения
+        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div/div[2]")).shouldHave(text("Исполнение"));
     }
 
     @Test
     public void test_204() {
-        $(byXpath("/html/body/div[6]/div/div[3]/span/button[1]")).click();
+        // нажимаем исполнить резорлючию
+        Buttons.execute();
+    }
+    @Test
+    public void test_206() {
+        // описание
+        $("#reportText").setValue("The end");
+    }
+    @Test
+    public void test_207() {
+        // pfuhe;ftv rjyntyn
+        $(".file-input-label").uploadFile(new File(DOC));
+    }
+    @Test
+    public void test_208() {
+        // отправляем
+       $("button.empty-purple:nth-child(4)").click();
+    }
+
+    @Test
+    public void test_209() {
+        // выходим из того кто сделал резолюцию
+        UserChange.exit();
+    }
+
+
+    @Test
+    public void test_210() {
+      // заходим туда кто ее создавал
+        UserChange.comInBoss21();
+    }
+@Test
+    public void test_211() {
+      //находим наш док
+    $("button.layout-action-button:nth-child(1)").click();
+    $(byText("По резолюциям")).click();
+    $(byText("По документам")).click();
+    $(byXpath("//*[@id=\"changing\"]")).setValue(val).pressEnter();
+    $("button.rounded-button:nth-child(1)").click();
+    sleep(1000);
+    $$(byText("Auto-test777"))
+            .first()
+            .click();
+    }
+    @Test
+    public void test_212() {
+        // делаем крточку
+        Buttons.printCart();
+    }
+
+    @Test
+    public void test_213() {
+        // заввершаем
+        $(byText("Печать")).click();
         sleep(1000);
     }
+
+
+//
+//    @Test
+//    public void test_205() {
+//        // описание
+//        $(byXpath("//*[@id=\"reportText\"]")).setValue("The end");
+//    }
+//
+//    @Test
+//    public void test_206() {
+//        // документ загружаем
+//        Content.content(DOC);
+//    }
+//
+//    @Test
+//    public void test_207() {
+//        // выполняем
+//        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[3]/button[3]")).click();
+//    }
+//
+//    @Test
+//    public void test_196() {
+//        $(byXpath("/html/body/div[1]/div[3]/nav/div[4]/button[1]")).click();
+//
+//    }
+//
+//    @Test
+//    public void test_197() {
+//
+//    }
+//
+//    @Test
+//    public void test_198() {
+//        $(byText("По документам")).click();
+//    }
+//
+//    @Test
+//    public void test_199() {
+//        $(byXpath("//*[@id=\"changing\"]")).setValue(val);
+//    }
+//
+//    @Test
+//    public void test_200() {
+//        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div[2]/button[1]")).click();
+//    }
+//
+//    @Test
+//    public void test_201() {
+//        $$(byText("Auto-test777"))
+//                .first()
+//                .click();
+//    }
+//
+//    @Test
+//    public void test_202() {
+//        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div/div/button[1]")).click();
+//    }
+//
+//    @Test
+//    public void test_203() {
+//        Buttons.printCart();
+//    }
+//
+//
 
 }
