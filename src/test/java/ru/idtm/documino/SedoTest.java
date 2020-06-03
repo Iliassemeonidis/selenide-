@@ -251,11 +251,6 @@ public class SedoTest {
 
     }
 
-//    @Test
-//    public void test_142() {
-//        $(".complete-сondition").shouldHave(text("Ждать первой визы"));
-//    }
-
 
     // нажимаем кнопку на согласование
     @Test
@@ -639,19 +634,6 @@ public class SedoTest {
         // подписываем
         Buttons.sing();
     }
-/*
-  ///  / временный блок 191 потому что будем создавать резолючию сразу после подписания
-//     @Test
-//    public void test_191() {
-//   // поиск нашего дока
-//    $("button.layout-action-button:nth-child(1)").click();
-//    $(byXpath("//*[@id=\"changing\"]")).setValue("166").pressEnter();
-//    $(byText("Искать")).click();
-//    sleep(1000);
-//    $$(byText("Auto-test777"))
-//            .first()
-//            .click();
-//}*/
 
     @Test
     public void test_206() {
@@ -726,11 +708,6 @@ public class SedoTest {
         Buttons.history();
     }
 
-//    @Test
-//    public void test_217() {
-//        // проверяем что что ест текст исполения
-//        $(".table-scroll-bar").shouldHave(text("Исполнение"));
-//    }
 
     @Test
     public void test_218() {
