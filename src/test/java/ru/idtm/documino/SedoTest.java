@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -44,7 +45,7 @@ public class SedoTest {
     @Test
     public void tess_90() {
         OpenBrowser.openUtl();
-        sleep(10000);
+       // sleep(10000);
         UserChange.comInBoss11();
     }
 
@@ -95,9 +96,9 @@ public class SedoTest {
 //        // проверяем наличие Созданные мной
 //        $("div.ps--active-y:nth-child(1)").shouldHave(text("Созданные мной"));
 //    }
+//
 
-
-    ////////////////////////////// приказ
+    //////////////////////////// приказ
     @Test
     public void test_125() {
         CreateDocument.createInDoc(REGULATORY_DOCUMENTS, "div.menu-list:nth-child(2) > div:nth-child(1)");
@@ -506,12 +507,19 @@ public class SedoTest {
 
     @Test
     public void test_185() {
+
+//        ///часть для клерка3
+//        $(byText("Задания Босс32")).shouldBe(visible);
+//        $(byText("Задания Босс32")).click();
+//
+
+
         // все задания
         $("li.list-item-container:nth-child(4)").click();
         sleep(1000);
         $(byXpath("/html/body/div[1]/div[3]/div/div[1]/nav/ul/div/li[4]/ul/li[1]/button")).click();
         sleep(1000);
-        //Buttons.allTasks();
+//        Buttons.allTasks();
     }
 
     @Test
@@ -753,10 +761,21 @@ public class SedoTest {
         $("button.el-tooltip:nth-child(1)").click();
         $(byText("По резолюциям")).click();
         $(byText("По документам")).click();
-        $("div.input-field-container:nth-child(4) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > input:nth-child(1)").setValue(registrationNumber);
+
+    }
+    @Test
+ public void test_225() {
+
+        $(byXpath("//*[@id=\"changing\"]")).setValue(registrationNumber);
+
         sleep(1000);
+
+
+    }
+    @Test
+ public void test_226() {
         $(byText("Искать")).click();
-        sleep(1000);
+        sleep(10000);
         $$(byText(description))
                 .first()
                 .click();
@@ -764,56 +783,56 @@ public class SedoTest {
     }
 
     @Test
-    public void test_225() {
+    public void test_227() {
         // делаем крточку
         Buttons.printCart();
     }
 
     @Test
-    public void test_226() {
+    public void test_228() {
         // заввершаем
         $(byText("Печать")).click();
         sleep(1000);
     }
 ////////////////////////////// чать 2 Исх, Вх, Внутр, ИП
     @Test
-    public void test_227() {
+    public void test_229() {
         UserChange.exit();
     }
     @Test
-    public void test_228() {
+    public void test_230() {
         UserChange.comInBoss11();
     }
 
     @Test
-    public void test_229() {
+    public void test_231() {
         // исходящий документ
         CreateDocument.create(OUTPUTDOCUMENT);
     }
 
     @Test
-    public void test_230() {
+    public void test_232() {
         // добавляем контент
         Content.content(DOC);
         Buttons.requisites();
     }
 
     @Test
-    public void test_231() {
+    public void test_233() {
         // переходим в реквизиты
         Buttons.requisites();
     }
 
 
     @Test
-    public void test_232() {
+    public void test_234() {
         // Краткое содержание
         $(byXpath("//*[@id=\"dss_description\"]")).setValue("Auto-test777");
     }
 
     //заполняем обязательные поля
     @Test
-    public void test_233() {
+    public void test_235() {
         //Подписант
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[9]/div/div/div[1]/div/div/div/div/div/div[1]/button")).click();
         $(byXpath("//*[@id=\"query\"]")).setValue("Босс11");
@@ -823,7 +842,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_234() {
+    public void test_236() {
         // сохраняем спецом чтоб перекинуло к незаполненым полям если они есть
         Buttons.save();
         sleep(1000);
@@ -831,7 +850,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_235() {
+    public void test_237() {
         // Внешний аресат
         // работает при увеличении экрана
 //        $(byXpath("//*[@id=\"dsid_agent_person\"]")).setValue("Иванов");
@@ -843,7 +862,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_236() {
+    public void test_238() {
         // сохраняем
         Buttons.save();
         sleep(1000);
@@ -851,7 +870,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_237() {
+    public void test_239() {
         // проверяем что заполнились Регистрационный номер, Временный номер
         Buttons.content();
         Buttons.requisites();
@@ -861,7 +880,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_238() {
+    public void test_240() {
         // скачиваем контент
         Buttons.content();
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div/div/button[1]")).click();
@@ -870,19 +889,19 @@ public class SedoTest {
 
     /// переходим к проверке оформления
     @Test
-    public void test_239() {
+    public void test_241() {
         //нажимаем на вкладку соласование и подписание
         $(byText("Согласование и подписание")).click();
     }
 
 
     @Test
-    public void test_240() {
+    public void test_242() {
         //ажимаем добавить проверяющего
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[5]/div[4]/div[2]/div/div[1]/div[3]/button[1]")).click();
     }
     @Test
-    public void test_241() {
+    public void test_243() {
         //ажимаем добавить проверяющего
         $(".layout-icon").click();
         $(byXpath("//*[@id=\"branchId\"]")).setValue("Тестовый Филиал");
@@ -896,23 +915,23 @@ public class SedoTest {
     }
 
     @Test
-    public void test_242() {
+    public void test_244() {
         // на согласование
         Buttons.agreement();
         sleep(10000);
     }
    @Test
-    public void test_243() {
+    public void test_245() {
         // меняем пользака
         UserChange.exit();
     }
     @Test
-    public void test_244() {
+    public void test_246() {
         // заходим под проверяющим
         UserChange.comInBoss51();
     }
     @Test
-    public void test_245() {
+    public void test_247() {
        /// поиск по организации
         //находим наш доок
         $("button.el-tooltip:nth-child(1)").click();
@@ -937,12 +956,12 @@ public class SedoTest {
    ///////////////// //////// Входящий документ
 
     @Test
-    public void test_246() {
+    public void test_248() {
         CreateDocument.create(INPUTDOCUMENT);
     }
 
     @Test
-    public void test_247() {
+    public void test_249() {
         //Проверка на дубли
         Random rd = new Random();
         //$(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/div/div/div/div/div/div[1]/button")).click();
@@ -958,7 +977,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_248() {
+    public void test_250() {
         //Жмем кнопку далее
         $(byText("Далее")).click();
         sleep(10000);
@@ -966,7 +985,7 @@ public class SedoTest {
 
 
     @Test
-    public void test_249() {
+    public void test_251() {
         // заполняем обязательные поля
         Buttons.requisites();
         RequiredFields.addressee("Босс11");
@@ -974,7 +993,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_250() {
+    public void test_252() {
         // контент загружаем
         $(byText(CONTENT)).click();
         Content.content(DOC);
@@ -983,7 +1002,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_251() {
+    public void test_253() {
         //Жмем кнопку зарегистрировать
         Buttons.save();
         //$(byText("Зарегистрировать")).click();
@@ -991,7 +1010,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_252() {
+    public void test_254() {
         //Жмем кнопку зарегистрировать
 //        Buttons.register();
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/button")).click();
@@ -1000,7 +1019,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_253() {
+    public void test_255() {
         // На Рассмотрение
         //Buttons.review(); переписать кнопку
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div[1]/div[2]/ul/li[2]/button")).click();
@@ -1009,20 +1028,20 @@ public class SedoTest {
 
 
     @Test
-    public void test_254() {
+    public void test_256() {
         Buttons.requisites();
         $$("div.form-item-container:nth-child(2) > div:nth-child(1) > div:nth-child(2)").findBy(text("В канцелярии"));
     }
 
     @Test
-    public void test_255() {
+    public void test_257() {
         // задание
         Buttons.history();
         $(".table-scroll-bar").shouldHave(text("Предварительное рассмотрение"));
     }
 
     @Test
-    public void test_256() {
+    public void test_258() {
         // На резолюцию
         test_246();
         test_247();
@@ -1037,13 +1056,13 @@ public class SedoTest {
 
 
     @Test
-    public void test_257() {
+    public void test_259() {
         // проверка статус доркумента
         $$("div.form-item-container:nth-child(2) > div:nth-child(1) > div:nth-child(2)").findBy(text("В подразделении"));
     }
 
     @Test
-    public void test_258() {
+    public void test_260() {
         // задание
         Buttons.history();
         $(".table-scroll-bar").shouldHave(text("Рассмотрение"));
@@ -1051,7 +1070,7 @@ public class SedoTest {
 
      //служебная записка
     @Test
-    public void test_259() {
+    public void test_261() {
         $(byText("Создать документ")).click();
         $(byText(INTERNAL_DOCUMENTS)).click();
         $(byText(MEMORANDUM_TEST)).click();
@@ -1060,7 +1079,7 @@ public class SedoTest {
     }
 
     @Test
-    public void test_260() {
+    public void test_262() {
         //
         $$(byXpath("//*[@id=\"dsid_stamp\"]"))
                 .first()
@@ -1070,13 +1089,13 @@ public class SedoTest {
     }
 
     @Test
-    public void test_261() {
+    public void test_263() {
         // описание
         RequiredFields.description("Служебка");
     }
 
     @Test
-    public void test_262() {
+    public void test_264() {
         // адресат
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[10]/div/div/div/div[1]/div/div/div/div/div/div[1]/button")).click();
         //$(byXpath("//*[@id=\"query\"]")).setValue(BOSS);
@@ -1092,7 +1111,7 @@ public class SedoTest {
 
 
     @Test
-    public void test_263() {
+    public void test_265() {
         // подписант
         $(byXpath("//*[@id=\"dsid_signer_empl\"]")).setValue("Босс11");
         sleep(1000);
@@ -1103,7 +1122,7 @@ public class SedoTest {
 
 
     @Test
-    public void test_265() {
+    public void test_266() {
         Buttons.save();
         sleep(1000);
         Buttons.content();
@@ -1111,14 +1130,14 @@ public class SedoTest {
     }
 
     @Test
-    public void test_266() {
+    public void test_267() {
         // на согласование
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/button")).click();
         sleep(10000);
     }
 
     @Test
-    public void test_267() {
+    public void test_268() {
         // нахолдим нашу служебку
         Buttons.allTasks();
        WorkWithDocuments.tryToFindDoc("Служебка");
@@ -1132,13 +1151,13 @@ public class SedoTest {
     // Создание Исполнительного поручения
 
     @Test
-    public void test_268() {
+    public void test_269() {
         CreateDocument.create(ERRAND);
         Buttons.requisites();
     }
 
     @Test
-    public void test_269() {
+    public void test_270() {
         // заполняем поля
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[5]/div/div/div[1]/div/div/div/div/div/div[1]/button")).click();
         $(byXpath("//*[@id=\"query\"]")).setValue(BOSS);
@@ -1152,47 +1171,47 @@ public class SedoTest {
 
 
     @Test
-    public void test_270() {
+    public void test_271() {
         Buttons.content();
         Content.content(DOC);
     }
 
     @Test
-    public void test_271() {
+    public void test_272() {
         Buttons.save();
         sleep(1000);
         Buttons.requisites();
         sleep(1000);
     }
     @Test
-    public void test_272() {
+    public void test_273() {
         CreateDocument.create("ДОВЕРЕННОСТЬ");
     }
  @Test
-    public void test_273() {
+    public void test_274() {
        Content.content(DOC);
     }
     @Test
-    public void test_274() {
-       Buttons.requisites();
-    }
-    @Test
     public void test_275() {
-        // содержание
-        $(byXpath("//*[@id=\"dss_description\"]")).setValue("Auto-test888");
+       Buttons.requisites();
     }
     @Test
     public void test_276() {
         // содержание
-        Buttons.save();
+        $(byXpath("//*[@id=\"dss_description\"]")).setValue("Auto-test888");
     }
     @Test
     public void test_277() {
+        // содержание
+        Buttons.save();
+    }
+    @Test
+    public void test_278() {
         // создаем кому
        $("div.form-item-container:nth-child(11) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)").click();
     }
    @Test
-    public void test_278() {
+    public void test_279() {
         // кому
        $(byXpath("//*[@id=\"branchId\"]")).setValue("Тестовый Филиал");
         $(byText("Тестовый Филиал")).click();
@@ -1204,7 +1223,7 @@ public class SedoTest {
         sleep(1000);
     }
    @Test
-    public void test_279() {
+    public void test_280() {
         // инициатор
        $("div.form-item-container:nth-child(19) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button:nth-child(1)").click();
 //       $("#branchId").setValue("Тестовый Филиал");
@@ -1218,7 +1237,7 @@ public class SedoTest {
 
     }
   @Test
-    public void test_280() {
+    public void test_281() {
         // подписант
 //      $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[20]/div/div/div/div[1]/div/div/div/div/div[1]/button")).click();
 $("#dsid_signer_empl").setValue("Рю");
@@ -1228,24 +1247,24 @@ $(byText("Рюмин Андрей Валерьевич, ГД ПАО \"Ленэн
 
 
     @Test
-    public void test_281() {
+    public void test_282() {
         // содержание
         Buttons.save();
     }
   @Test
-    public void test_282() {
+    public void test_283() {
         // содержание
         Buttons.agreement();
     }
 
     @Test
-    public void test_283() {
+    public void test_284() {
         // содержание
        Buttons.allTasks();
        sleep(10000);
     }
     @Test
-    public void test_284() {
+    public void test_285() {
         // содержание
       WorkWithDocuments.tryToFindDoc("Auto-test888");
     }

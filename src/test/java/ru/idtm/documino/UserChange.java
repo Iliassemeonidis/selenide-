@@ -48,6 +48,13 @@ public class UserChange {
         $(byText("Войти")).click();
         sleep(1000);
     }
+    public static void comInClerk3(){
+        sleep(10000);
+        $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Clerk3").pressEnter();
+        $(byXpath("/html/body/div/div[3]/form/div[2]/input")).setValue("1");
+        $(byText("Войти")).click();
+        sleep(1000);
+    }
     public static void comInBoss21(){
         sleep(10000);
         $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Boss21").pressEnter();

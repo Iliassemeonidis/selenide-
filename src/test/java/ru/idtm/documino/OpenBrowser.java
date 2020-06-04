@@ -8,7 +8,8 @@ public class OpenBrowser {
 
     public static void openUtl() {
         browser = "firefox";
-        open("http://172.25.144.151/");
+       open("http://172.25.144.151/");// стейдж
+       // open("http://172.25.144.163");// прод
 
     }
 
