@@ -1043,13 +1043,13 @@ public class SedoTest {
     @Test
     public void test_258() {
         // На резолюцию
-        test_246();
-        test_247();
         test_248();
         test_249();
         test_250();
         test_251();
         test_252();
+        test_253();
+        test_254();
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/button")).click();
         sleep(1000);
     }
