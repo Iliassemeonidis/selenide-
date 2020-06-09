@@ -14,7 +14,8 @@ public class CreateDocument {
         $(byText("Создать документ")).click();
         $(byText(documentName)).click();
         sleep(1000);
-        $(documentName1).click();
+//        $(documentName1).click(); вернуть
+        $(byText(documentName1)).click();
         sleep(1000);
         $(byText("Создать")).click();
     }

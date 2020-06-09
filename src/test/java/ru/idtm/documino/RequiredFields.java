@@ -23,6 +23,14 @@ public class RequiredFields {
         $$(PATH).findBy(text(BUTTON)).click();
 
     }
+    public static void addressee1(String text) {
+        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[11]/div/div/div[1]/div/div/div/div/div/div/div[1]/button")).click();
+        $(byXpath("//*[@id=\"query\"]")).setValue(text);
+        $(byText("Начальник 1"))
+                .click();
+        $$(PATH).findBy(text(BUTTON)).click();
+
+    }
     public static void signatory(String text) {
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[11]/div/div/div[1]/div[1]/div/div/div/div/div[1]/button")).click();
         $(byXpath("//*[@id=\"query\"]")).setValue(text);

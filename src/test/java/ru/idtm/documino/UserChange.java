@@ -20,6 +20,13 @@ public class UserChange {
         $(byText("Войти")).click();
         sleep(1000);
     }
+    public static void comInBoss12(){
+        sleep(10000);
+        $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Boss12").pressEnter();
+        $(byXpath("/html/body/div/div[3]/form/div[2]/input")).setValue("1");
+        $(byText("Войти")).click();
+        sleep(1000);
+    }
     public static void comInBoss51(){
         sleep(1000);
         $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Boss51").pressEnter();

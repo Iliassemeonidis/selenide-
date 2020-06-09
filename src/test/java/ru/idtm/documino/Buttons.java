@@ -43,7 +43,7 @@ public class Buttons {
     }
     public static void review(){ $(byText(REVIEW)).click(); }
     public static void history(){ $(byText(HISTORY)).click(); }
-    public static void agreement(){ $(byText(AGREEMENT)).click(); }
+    public static void agreement(){ $(byText(AGREEMENT)).click(); sleep(1000); }
     public static void revert(){ $(byText(REVERT)).click(); }
     public static void bringBack(){ $(byText(BRING_BACK)).click(); }
     public static void allTasks(){ $(byText(ALL_TASKS)).click(); sleep(1000);}
