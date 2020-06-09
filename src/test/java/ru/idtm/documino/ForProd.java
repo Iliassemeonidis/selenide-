@@ -1293,11 +1293,6 @@ public class ForProd {
     public void test_282() {
 //     нахолдим нашу служебку
 //    этот кусок не работает на проде но на стейжде он работает
-        Buttons.allTasks();
-        WorkWithDocuments.tryToFindDoc("Служебка");
-        $$(byText("Внутренние документы"))
-                .first()
-                .click();
         $("button.el-tooltip:nth-child(1)").click();
         $(byText("По резолюциям")).click();
         $(byText("По документам")).click();
@@ -1430,12 +1425,12 @@ public class ForProd {
         Buttons.agreement();
     }
 
-    @Test
-    public void test_298() {
-        // содержание
-        Buttons.allTasks();
-        sleep(10000);
-    }
+//    @Test
+//    public void test_298() {
+//        // содержание
+//        Buttons.allTasks();
+//        sleep(10000);
+//    }
 
     @Test
     public void test_299() {
