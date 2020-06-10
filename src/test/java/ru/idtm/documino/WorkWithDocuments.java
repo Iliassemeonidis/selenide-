@@ -41,6 +41,8 @@ public class WorkWithDocuments {
                 .first()
                 .click();
     }
+
+
     public static void tryToFindDoc(String doc) {
         // ием по подписанту
         $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[1]/div/button")).click();

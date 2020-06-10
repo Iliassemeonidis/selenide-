@@ -27,12 +27,8 @@ public class Buttons {
     private final static String EXECUTE = "Исполнить";
     private final static String PRINT_CART = "Печать карточки";
 
-    public static void requisites(){
-        $(byText(REQUISITES)).click();
-    }
-    public static void save(){
-        $(byText(SAVE)).click();
-    }
+    public static void requisites(){ $(byText(REQUISITES)).click(); }
+    public static void save(){ $(byText(SAVE)).click(); }
     public static void delete(){ $(byText(DELETE)).click(); }
     public static void content(){ $(byText(CONTENT)).click(); }
     public static void consideration(){
@@ -56,8 +52,6 @@ public class Buttons {
     public static void createResolution(){ $(byText(CREATE_RESOLUTION)).click(); sleep(1000);}
     public static void execute(){ $(byText(EXECUTE)).click(); sleep(10000);}
     public static void printCart(){ $(byText(PRINT_CART)).click(); sleep(1000);}
-
-
 
 
 }
