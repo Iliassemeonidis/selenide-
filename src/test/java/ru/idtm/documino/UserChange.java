@@ -10,8 +10,24 @@ public class UserChange {
     public static void exit() {
         sleep(10000);
         $("button.el-tooltip:nth-child(4)").click();
-        sleep(1000);
-        $(byText("Выход")).click();
+        boolean visible = $(byText("Выход")).isDisplayed();
+        if (visible) {
+            sleep(1000);
+            $(byText("Выход")).click();
+        } else {
+            $("button.el-tooltip:nth-child(5)").click();
+            visible = $(byText("Выход")).isDisplayed();
+            if (visible) {
+                sleep(1000);
+                $(byText("Выход")).click();
+            } else {
+                $("button.el-tooltip:nth-child(3)").click();
+                sleep(1000);
+                $(byText("Выход")).click();
+            }
+        }
+
+
     }
 
     public static void comInBoss11() {
@@ -109,6 +125,7 @@ public class UserChange {
         $(byText("Войти")).click();
         sleep(1000);
     }
+
     public static void comInAutotest5() {
         sleep(10000);
         $(byXpath("/html/body/div/div[3]/form/div[1]/input")).setValue("Autotest5").pressEnter();

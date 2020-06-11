@@ -3,8 +3,7 @@ package ru.idtm.documino;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RequiredFields {
     private final static String BUTTON = "Выбрать";
@@ -12,7 +11,10 @@ public class RequiredFields {
 
 
     public static void description(String text) {
-        $(byXpath("//*[@id=\"dss_description\"]")).setValue(text);
+        boolean visible = $(byXpath("//*[@id=\"dss_description\"]")).isDisplayed();
+        if (visible) {
+            $(byXpath("//*[@id=\"dss_description\"]")).setValue(text);
+        }else $("#dss_description").setValue(text);
     }
 
     public static void addressee(String text) {
@@ -23,12 +25,33 @@ public class RequiredFields {
         $$(PATH).findBy(text(BUTTON)).click();
 
     }
-    public static void addressee1(String text,String emploer) {
-        $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[11]/div/div/div[1]/div/div/div/div/div/div/div[1]/button")).click();
-        $(byXpath("//*[@id=\"query\"]")).setValue(text);
-        $(byText(emploer))
-                .click();
-        $$(PATH).findBy(text(BUTTON)).click();
+    public static void addressee(String name, String emploer, String fulleName) {
+        boolean visblle = $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[11]/div/div/div[1]/div/div/div/div/div/div/div[1]/button")).isDisplayed();
+        if (visblle) {
+
+            $(byXpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[11]/div/div/div[1]/div/div/div/div/div/div/div[1]/button")).click();
+            $(byXpath("//*[@id=\"query\"]")).setValue(name);
+            $(byText(emploer))
+                    .click();
+            $$(PATH).findBy(text(BUTTON)).click();
+        }else{
+            visblle = $(byXpath("//*[@id=\"drid_addressee_empl\"]")).isDisplayed();
+            if (visblle) {
+                $(byXpath("//*[@id=\"drid_addressee_empl\"]")).setValue(name);
+            } else {
+                $("#dsid_main_performer_empl").setValue(name);
+            }
+            sleep(1000);
+            $(byText(fulleName)).click();
+
+        }
+
+        visblle = $("#dsdt_control_date").isDisplayed();
+        if (visblle) {
+            $("#dsdt_control_date").click();
+            $(byText("5")).click();
+        }
+
 
     }
     public static void signatory(String text) {
