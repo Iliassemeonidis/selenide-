@@ -1176,10 +1176,16 @@ public class SedoTest {
             $(byText("Искать")).click();
             sleep(1000);
         }
-        $$(byText("Согласование"))
+        visible = $(byText("Согласование")).isDisplayed();
+        if (visible) {
+            $$(byText("Согласование"))
+                    .first()
+                    .click();
+
+        }else  $$(byText(registrationNumber))
                 .first()
                 .click();
-
+sleep(1000);
         UserChange.exit();
         UserChange.comInAutotest1();
     }
@@ -1189,7 +1195,11 @@ public class SedoTest {
 
     @Test
     public void test_254() {
-        CreateDocument.create(INPUTDOCUMENT);
+        boolean visible = $(byText("ВХОДЯЩИЕ ДОКУМЕНТЫ")).isDisplayed();
+        if (visible) {
+            CreateDocument.create(INPUTDOCUMENT);
+
+        }else CreateDocument.create("Входящие документы");
     }
 
     @Test
@@ -1492,6 +1502,7 @@ public class SedoTest {
 
     @Test
     public void test_286() {
+        sleep(1000);
         Buttons.save();
         sleep(1000);
         Buttons.requisites();
@@ -1524,6 +1535,7 @@ public class SedoTest {
     @Test
     public void test_291() {
         // содержание
+        sleep(1000);
         Buttons.save();
         sleep(1000);
     }
