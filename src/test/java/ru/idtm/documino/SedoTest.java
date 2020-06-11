@@ -1163,7 +1163,7 @@ public class SedoTest {
         $("div.input-field-container:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > input:nth-child(1)").setValue("Автотест1");
         sleep(10000);
         $(byText("Искать")).click();
-        sleep(10000);
+        sleep(1000);
         boolean visible = $(byText("Согласование")).isDisplayed();
         if (!visible) {
             $(byText("По резолюциям")).click();
@@ -1182,10 +1182,31 @@ public class SedoTest {
                     .first()
                     .click();
 
-        }else  $$(byText(registrationNumber))
+        }else{
+            visible = $(byText(registrationNumber)).isDisplayed();
+            if (visible) {
+
+                $$(byText(registrationNumber))
+                        .first()
+                        .click();
+            } else {
+                $(byText("По резолюциям")).click();
+                $(byText("По документам")).click();
+                $("#types").click();
+                $(byText("Исходящие документы")).click();
+                sleep(1000);
+                $(byXpath("//div[6]//div[1]//div[1]//div[1]//input[1]")).setValue(registrationNumber);
+                $(byText("Искать")).click();
+            }
+
+
+        }
+        $$(byText(registrationNumber))
                 .first()
                 .click();
-sleep(1000);
+           sleep(1000);
+
+
         UserChange.exit();
         UserChange.comInAutotest1();
     }
@@ -1195,11 +1216,14 @@ sleep(1000);
 
     @Test
     public void test_254() {
-        boolean visible = $(byText("ВХОДЯЩИЕ ДОКУМЕНТЫ")).isDisplayed();
+        boolean visible = $(byText("ВХОДЯЩИЕ ДОКУМЕНТЫ")).is(Condition.visible);
         if (visible) {
             CreateDocument.create(INPUTDOCUMENT);
-
-        }else CreateDocument.create("Входящие документы");
+        }else {
+            $(byText("Создать документ")).click();
+            $(byXpath("//div[@class='el-dialog__wrapper']//div[10]//div[1]//div[2]")).shouldNotHave(text("ВХОДЯЩИЕ ДОКУМЕНТЫ")).click();
+            $(byText("Создать")).click();
+        }
     }
 
     @Test

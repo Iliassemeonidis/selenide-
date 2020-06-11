@@ -21,7 +21,7 @@ public class OpenBrowser {
 
     public static void openUtl3() {
         browser = "firefox";
-        open("http://192.168.32.33/");// дев
+        open("https://le-sedo.devel/");// дев
 
     }
 
