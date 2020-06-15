@@ -1,6 +1,7 @@
 package ru.idtm.documino;
 
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.junit.ScreenShooter;
 import org.junit.Rule;
@@ -792,8 +793,14 @@ public class SedoTest {
     @Test
     public void test_209() {
         // заполняем поле дата исполнения
-        $(byXpath("//*[@id=\"Дата исполнения\"]")).click();
-        $(byText("Без срока")).click();
+        boolean visible = $(byXpath("//*[@id=\"Дата исполнения\"]")).is(Condition.visible);
+        if (visible) {
+            $(byXpath("//*[@id=\"Дата исполнения\"]")).click();
+            $(byText("Без срока")).click();
+
+        }else{ $("#period").click();
+        $(byText("Без срока")).click();}
+
     }
 
     @Test
@@ -945,8 +952,8 @@ public class SedoTest {
         $(byText("Печать")).click();
         sleep(1000);
     }
-
-    ////////////////// чать 2 Исх, Вх, Внутр, ИП
+//
+//    ////////////////// чать 2 Исх, Вх, Внутр, ИП
     @Test
     public void test_229() {
         UserChange.exit();

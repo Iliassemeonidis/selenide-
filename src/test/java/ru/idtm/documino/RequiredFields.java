@@ -54,7 +54,7 @@ public class RequiredFields {
             }
             sleep(1000);
             $(byText(fulleName)).click();
-//#drid_addressee_empl
+
         }
 
         visblle = $("#dsdt_control_date").isDisplayed();
