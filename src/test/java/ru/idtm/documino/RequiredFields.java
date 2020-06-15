@@ -14,7 +14,14 @@ public class RequiredFields {
         boolean visible = $(byXpath("//*[@id=\"dss_description\"]")).isDisplayed();
         if (visible) {
             $(byXpath("//*[@id=\"dss_description\"]")).setValue(text);
-        }else $("#dss_description").setValue(text);
+        }else{
+            visible = $("#dss_description").isDisplayed();
+            if (visible) {
+                $("#dss_description").setValue(text);
+            } else $("#dss_description").setValue(text);
+            }
+
+
     }
 
     public static void addressee(String text) {
@@ -39,11 +46,15 @@ public class RequiredFields {
             if (visblle) {
                 $(byXpath("//*[@id=\"drid_addressee_empl\"]")).setValue(name);
             } else {
-                $("#dsid_main_performer_empl").setValue(name);
+                visblle = $("#dsid_main_performer_empl").isDisplayed();
+                if (visblle) {
+                    $("#dsid_main_performer_empl").setValue(name);
+                } else
+                    $("#drid_addressee_empl").setValue(name);
             }
             sleep(1000);
             $(byText(fulleName)).click();
-
+//#drid_addressee_empl
         }
 
         visblle = $("#dsdt_control_date").isDisplayed();

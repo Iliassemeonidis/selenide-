@@ -61,7 +61,7 @@ public class SedoTest {
 
     @Test
     public void tess_90() {
-        OpenBrowser.openUtl();
+        OpenBrowser.openUtl3();
         /// sleep(10000);
         UserChange.comInAutotest1();
     }
@@ -1227,7 +1227,7 @@ public class SedoTest {
     }
 
 
-    ///////////// //////// Входящий документ остановился тут
+    ///////////// //////// Входящий документ
 
     @Test
     public void test_254() {
@@ -1271,6 +1271,9 @@ public class SedoTest {
         Buttons.requisites();
         RequiredFields.addressee(AUTOTEST_NAME1, "Департамент 1",AUTOTEST1);
         RequiredFields.description("Auto-test");
+        $("#dsid_document_kind").setValue("Вход");
+        sleep(1000);
+        $(byText("Входящие документы")).click();
     }
 
     @Test
@@ -1370,6 +1373,9 @@ public class SedoTest {
         Buttons.requisites();
         RequiredFields.addressee(AUTOTEST_NAME1, "Департамент 1",AUTOTEST1);
         RequiredFields.description("Auto-test");
+        $("#dsid_document_kind").setValue("Вход");
+        sleep(1000);
+        $(byText("Входящие документы")).click();
     }
 
     @Test
